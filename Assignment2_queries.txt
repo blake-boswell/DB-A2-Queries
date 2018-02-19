@@ -1,0 +1,4 @@
+// Query 1
+SELECT COUNT(ID) FROM Trip WHERE Emp_ID = Any(SELECT ID FROM Employee WHERE Dept = Any(SELECT Code FROM Dept WHERE Name = 'Marketing'));
+
+// Query 2
