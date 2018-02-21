@@ -2,3 +2,9 @@
 SELECT COUNT(ID) FROM Trip WHERE Emp_ID = Any(SELECT ID FROM Employee WHERE Dept = Any(SELECT Code FROM Dept WHERE Name = 'Marketing'));
 
 // Query 2
+// Print names of employees who have been approved to take a trip but
+// have not submitted any receipts yet.
+// Do not print the same employee's name more than once.
+SELECT Name FROM Employee WHERE ID in (SELECT Emp_ID FROM Trip WHERE ID NOT IN (SELECT Trip_ID FROM Expense));
+
+// Query 3
