@@ -1,0 +1,39 @@
+SQL> SELECT COUNT(ID) FROM Trip WHERE Emp_ID = Any(SELECT ID FROM Employee WHERE Dept = Any(SELECT Code FROM Dept WHERE Name = 'Marketing'));
+
+ COUNT(ID)
+----------
+         5
+
+SQL> SELECT DISTINCT Name FROM Employee WHERE ID in (SELECT Emp_ID FROM Trip WHERE ID NOT IN (SELECT Trip_ID FROM Expense));
+
+NAME
+---------------
+Blake
+Alex
+Harold
+Ingrid
+
+SQL> SELECT Name, Contact FROM Dept WHERE Code = (SELECT Dept FROM Employee WHERE ID = (SELECT Emp_ID FROM Trip WHERE Est_Cost = (SELECT MAX(Est_Cost) FROM Trip)));
+
+NAME       CONTACT
+---------- ---------------
+Marketing  Rick Ross
+
+SQL> SELECT Name FROM Dept WHERE Code IN(SELECT Dept FROM Employee WHERE ID NOT IN(SELECT Emp_ID FROM Trip));
+
+NAME
+----------
+Math
+Comp. Sci
+
+SQL> SELECT DISTINCT To_City FROM Trip WHERE Est_Cost < (SELECT AVG(Amount) FROM Expense);
+
+TO_CITY
+---------------
+Gotham
+Dallas
+Fayetteville
+Grapevine
+New York City
+
+SQL> spool off
